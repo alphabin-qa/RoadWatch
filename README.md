@@ -3,7 +3,7 @@
 ![RoadWatch](public/og.png)
 
 <h1 align="center">
-  <img src="public/roadwatch-mark.png" alt="" height="30" align="middle" />&nbsp;RoadWatch
+  <img src="public/roadwatch-mark.png" alt="" height="46" align="middle" />&nbsp;RoadWatch
 </h1>
 
 ### AI road-accountability chatbot for citizens

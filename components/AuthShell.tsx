@@ -22,9 +22,9 @@ export default function AuthShell({
     <div className="grid min-h-dvh grid-cols-1 bg-canvas lg:grid-cols-[35fr_65fr]">
       {/* Left - auth */}
       <div className="flex flex-col px-6 py-8 sm:px-10">
-        <div className="flex items-center gap-2.5 text-ink">
-          <Logo className="h-10 w-10" />
-          <span className="text-[20px] font-semibold tracking-tight">
+        <div className="flex items-center gap-2 text-ink">
+          <Logo className="h-7 w-7" />
+          <span className="text-[20px] font-semibold leading-none tracking-tight">
             RoadWatch
           </span>
         </div>
