@@ -2,7 +2,9 @@
 
 ![RoadWatch](public/og.png)
 
-# 🛣️ RoadWatch
+<h1 align="center">
+  <img src="public/roadwatch-mark.png" alt="" height="30" align="middle" />&nbsp;RoadWatch
+</h1>
 
 ### AI road-accountability chatbot for citizens
 
