@@ -23,7 +23,7 @@ type Row = {
 };
 
 function relTime(iso: string | null | undefined): string {
-  if (!iso) return "—";
+  if (!iso) return "-";
   const dt = new Date(iso);
   return dt.toLocaleDateString("en-IN", {
     day: "numeric",
@@ -70,7 +70,7 @@ export default function ComplaintsPage() {
           status: (c.status as Status) ?? "filed",
           filedAt: relTime(c.filed_at),
           lastUpdateAt: relTime(c.updated_at ?? c.filed_at),
-          stretch: c.road_name || c.neighbourhood || c.city || "—",
+          stretch: c.road_name || c.neighbourhood || c.city || "-",
           chainage: c.pincode || c.state || "",
           photos: [1],
           photoUrls: (c.complaint_photos ?? []).map((p: any) => p.url),

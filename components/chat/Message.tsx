@@ -107,7 +107,7 @@ export default function Message({
   return (
     <div className="flex gap-3">
       <img
-        src="/icon-192.png"
+        src="/roadwatch-mark.png"
         alt="RoadWatch"
         className="mt-0.5 h-7 w-7 shrink-0 rounded-full border border-line object-cover"
       />

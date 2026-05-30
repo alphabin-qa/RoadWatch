@@ -19,7 +19,7 @@ export function extractGps(
   }
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
   if (Math.abs(latitude) > 90 || Math.abs(longitude) > 180) return null;
-  // Null Island — most cameras write (0,0) when GPS lock fails. Reject.
+  // Null Island - most cameras write (0,0) when GPS lock fails. Reject.
   if (latitude === 0 && longitude === 0) return null;
   return { lat: latitude, lng: longitude };
 }
@@ -38,9 +38,9 @@ export async function readGpsFromFile(
   }
 }
 
-/** "13.04127, 80.24181" — 5 decimals ≈ 1.1 m precision. */
+/** "13.04127, 80.24181" - 5 decimals ≈ 1.1 m precision. */
 export function formatLatLng(p: LatLng | null): string {
-  if (!p) return "—";
+  if (!p) return "-";
   return `${round5(p.lat)}, ${round5(p.lng)}`;
 }
 

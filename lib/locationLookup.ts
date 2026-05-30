@@ -100,7 +100,7 @@ export function parseNominatim(raw: any): Address | null {
     a.hamlet ??
     null;
 
-  // City is messy in India — try every level.
+  // City is messy in India - try every level.
   const city =
     a.city ??
     a.town ??
@@ -111,7 +111,7 @@ export function parseNominatim(raw: any): Address | null {
     null;
 
   // Filter obviously-wrong pincodes (Nominatim sometimes returns stale 6-digit
-  // codes that don't match India's regional scheme — e.g. starting with 0 or
+  // codes that don't match India's regional scheme - e.g. starting with 0 or
   // belonging to the wrong state). Show pincode only if it parses cleanly.
   const rawPin = a.postcode ?? null;
   const pincode = isValidIndianPincode(rawPin) ? rawPin! : null;

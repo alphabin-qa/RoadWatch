@@ -28,7 +28,7 @@ const EMPTY: MatchResult = {
  *   → finds the contract + contractor + responsible officer for a pinned road.
  *
  * Match order:
- *   1. nearest contract within match_radius_m of (lat,lng) — the map-pin path
+ *   1. nearest contract within match_radius_m of (lat,lng) - the map-pin path
  *   2. road_name regex against contracts.road_match_pattern
  *   3. city (+ road_class) match
  *   4. state-level fallback
@@ -123,7 +123,7 @@ export async function POST(req: NextRequest) {
       contractorName = data?.name?.replace(/^SEED:/, "") ?? null;
     }
 
-    // officer = lowest rank (>= AE) for this jurisdiction — resolved even when
+    // officer = lowest rank (>= AE) for this jurisdiction - resolved even when
     // no contract matched, so complaint routing still works ("we don't know the
     // contractor, but here is the EE responsible for this jurisdiction").
     let officer: MatchResult["officer"] = null;

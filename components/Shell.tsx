@@ -37,9 +37,9 @@ export default function Shell({
             </svg>
           </button>
           <img
-            src="/icon-192.png"
+            src="/roadwatch-mark.png"
             alt="RoadWatch"
-            className="h-7 w-7 rounded-lg md:hidden"
+            className="h-8 w-8 rounded-lg md:hidden"
           />
           <div className="min-w-0 flex-1">{topbar}</div>
           <DemoToggle locale={locale} />

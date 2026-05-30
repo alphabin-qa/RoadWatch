@@ -1,4 +1,4 @@
-// RoadWatch service worker — lite offline (app shell + static assets).
+// RoadWatch service worker - lite offline (app shell + static assets).
 // Dynamic road data is cached separately in IndexedDB (see lib/offlineCache.ts);
 // complaints filed offline are queued there too. This SW just keeps the app
 // itself openable with no network.
@@ -31,7 +31,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return; // skip tiles, APIs on other hosts
 
-  // Don't cache our own API responses — they're handled by the app's IDB layer.
+  // Don't cache our own API responses - they're handled by the app's IDB layer.
   if (url.pathname.startsWith("/api/")) return;
 
   // Navigations: network-first, fall back to the cached app shell.

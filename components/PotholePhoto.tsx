@@ -1,4 +1,4 @@
-// 3 SVG variations — inline, no assets. Deterministic per `variant`.
+// 3 SVG variations - inline, no assets. Deterministic per `variant`.
 
 export default function PotholePhoto({
   variant = 1,

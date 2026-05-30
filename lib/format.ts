@@ -1,5 +1,5 @@
 // Pure formatters shared by server (API routes) and client (cards).
-// No DOM, no Node APIs — safe to import anywhere.
+// No DOM, no Node APIs - safe to import anywhere.
 
 /**
  * Format a paise-free INR integer as a compact Indian-style string.
@@ -8,7 +8,7 @@
  *   42000     → "₹42,000"
  */
 export function formatINR(n: number | null | undefined): string {
-  if (n == null || !isFinite(n)) return "—";
+  if (n == null || !isFinite(n)) return "-";
   if (n >= 1_00_00_000) return `₹${(n / 1_00_00_000).toFixed(2)} Cr`;
   if (n >= 1_00_000) return `₹${(n / 1_00_000).toFixed(2)} Lakh`;
   return `₹${n.toLocaleString("en-IN")}`;
@@ -19,9 +19,9 @@ const MONTHS = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ];
 
-/** ISO date ("2024-02-14") → "14 Feb 2024". Returns "—" on bad input. */
+/** ISO date ("2024-02-14") → "14 Feb 2024". Returns "-" on bad input. */
 export function formatDate(iso: string | null | undefined): string {
-  if (!iso) return "—";
+  if (!iso) return "-";
   const d = new Date(iso);
   if (isNaN(d.getTime())) return String(iso);
   return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;

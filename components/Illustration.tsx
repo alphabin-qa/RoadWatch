@@ -1,4 +1,4 @@
-// Inline SVG illustrations — no external image deps.
+// Inline SVG illustrations - no external image deps.
 
 export function HeroRoad({ className = "" }: { className?: string }) {
   return (

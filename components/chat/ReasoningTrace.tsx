@@ -67,7 +67,7 @@ export default function ReasoningTrace({
                     {s.label}
                   </span>
                   {s.detail && (
-                    <span className="ml-1 text-muted">— {s.detail}</span>
+                    <span className="ml-1 text-muted">- {s.detail}</span>
                   )}
                 </span>
               </li>

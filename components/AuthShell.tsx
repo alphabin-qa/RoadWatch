@@ -1,25 +1,12 @@
 import type { ReactNode } from "react";
-
-/** Bare RoadWatch mark (no background box) — inherits color via currentColor. */
-function Mark({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 32 32" className={className} fill="none" aria-hidden>
-      <path
-        d="M7 25 L16 7 L25 25"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="16" cy="20.5" r="1.9" fill="currentColor" />
-    </svg>
-  );
-}
+import Logo from "./Logo";
 
 /**
- * Supabase-style split auth layout:
- *  - Left  : the Clerk sign-in / sign-up card
- *  - Right : a branded product preview (defect images faded in the background)
+ * Split auth layout:
+ *  - Left  (35%): the Clerk sign-in / sign-up card
+ *  - Right (65%): an image-forward brand panel - a grid of real road-defect
+ *                 photography with a floating "who built this road" dashboard
+ *                 and a couple of example prompt chips layered on top.
  * The right pane is hidden on small screens so the form stays usable on mobile.
  */
 export default function AuthShell({
@@ -32,12 +19,12 @@ export default function AuthShell({
   subtitle: string;
 }) {
   return (
-    <div className="grid min-h-dvh grid-cols-1 bg-canvas lg:grid-cols-2">
-      {/* Left — auth */}
+    <div className="grid min-h-dvh grid-cols-1 bg-canvas lg:grid-cols-[35fr_65fr]">
+      {/* Left - auth */}
       <div className="flex flex-col px-6 py-8 sm:px-10">
-        <div className="flex items-center gap-2 text-ink">
-          <Mark className="h-7 w-7" />
-          <span className="text-[18px] font-semibold tracking-tight">
+        <div className="flex items-center gap-2.5 text-ink">
+          <Logo className="h-10 w-10" />
+          <span className="text-[20px] font-semibold tracking-tight">
             RoadWatch
           </span>
         </div>
@@ -57,125 +44,153 @@ export default function AuthShell({
         </p>
       </div>
 
-      {/* Right — branded product preview */}
-      <div className="relative hidden overflow-hidden bg-ink p-10 lg:flex lg:flex-col lg:justify-center">
-        {/* defect collage faded in the background */}
-        <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 opacity-25">
-          <img src="/defects/pothole-1.jpg" alt="" className="h-full w-full object-cover" />
-          <img src="/defects/waterlogging.jpg" alt="" className="h-full w-full object-cover" />
-          <img src="/defects/guardrail-missing.jpg" alt="" className="h-full w-full object-cover" />
-          <img src="/defects/bleeding-cracking.jpg" alt="" className="h-full w-full object-cover" />
+      {/* Right - image-forward brand panel */}
+      <div className="relative hidden overflow-hidden bg-ink lg:block">
+        {/* full-bleed grid of real road-defect photography */}
+        <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
+          <img
+            src="/defects/pothole-1.jpg"
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <img
+            src="/defects/mountain-road.jpg"
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <img
+            src="/defects/waterlogging.jpg"
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <img
+            src="/defects/pothole-2.jpg"
+            alt=""
+            className="h-full w-full object-cover"
+          />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/85" />
 
-        {/* preview card */}
-        <div className="relative mx-auto w-full max-w-[470px] rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm">
-          {/* brand */}
-          <div className="flex items-center gap-2 text-white">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10">
-              <Mark className="h-5 w-5" />
-            </span>
-            <span className="text-[16px] font-semibold tracking-tight">RoadWatch</span>
-          </div>
+        {/* legibility scrim - darken the photos so the floating UI reads clearly */}
+        <div className="absolute inset-0 bg-ink/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-ink/50" />
 
-          {/* headline */}
-          <h2 className="mt-6 text-[30px] font-semibold leading-[1.1] tracking-tight text-white">
-            Hold every road to account.
-          </h2>
-          <p className="mt-3 text-[14px] leading-relaxed text-white/65">
-            Snap a pothole. RoadWatch traces who built the road, the budget
-            spent, the warranty, and the officer responsible — then files your
-            complaint in one tap.
-          </p>
+        {/* layered product story */}
+        <div className="relative flex h-full flex-col justify-center px-10 py-12 xl:px-16">
+          <div className="mx-auto w-full max-w-[560px]">
+            <h2 className="text-center text-[30px] font-semibold leading-[1.12] tracking-tight text-white xl:text-[34px]">
+              Find out who built your road -{" "}
+              <span className="text-amber-400">and hold them to it.</span>
+            </h2>
+            <p className="mx-auto mt-3 max-w-[440px] text-center text-[14px] leading-relaxed text-white/70">
+              Snap a pothole. RoadWatch traces the contractor, the budget, the
+              warranty, and the officer responsible.
+            </p>
 
-          {/* "From one photo, RoadWatch found" panel */}
-          <div className="mt-6 rounded-2xl border border-white/10 bg-black/30 p-4">
-            <div className="flex items-center gap-2 text-[12px] text-emerald-300/80">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.8" />
-                <circle cx="8.5" cy="9.5" r="1.4" fill="currentColor" />
-                <path d="M4 17l5-5 4 4 3-3 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              From one photo, RoadWatch found
-            </div>
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              {[
-                { k: "Road type", v: "State Highway (SH-41)", accent: false },
-                { k: "Contractor", v: "Sterling Infra Pvt Ltd", accent: false },
-                { k: "Amount sanctioned", v: "₹4.2 crore", accent: false },
-                { k: "Warranty", v: "Active · till 2027", accent: true },
-              ].map((f) => (
-                <div key={f.k} className="rounded-xl bg-white/[0.04] px-3 py-2.5">
-                  <div className="text-[11px] text-white/45">{f.k}</div>
-                  <div
-                    className={`mt-0.5 text-[13px] font-medium ${
-                      f.accent ? "text-emerald-400" : "text-white"
-                    }`}
-                  >
-                    {f.v}
+            {/* floating "accountability dossier" dashboard card */}
+            <div className="mt-9 overflow-hidden rounded-2xl border border-white/10 bg-paper shadow-[0_24px_70px_-20px_rgba(0,0,0,0.7)]">
+              {/* card header */}
+              <div className="flex items-center gap-2.5 border-b border-line px-4 py-3">
+                <span className="grid h-7 w-7 place-items-center rounded-lg bg-ink text-paper">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <div className="leading-tight">
+                  <div className="text-[13px] font-semibold text-ink">
+                    Road accountability
                   </div>
+                  <div className="text-[11px] text-muted">
+                    Anand Vihar Road, Delhi · NH-24
+                  </div>
+                </div>
+                <span className="ml-auto rounded-full bg-danger/10 px-2 py-0.5 text-[10px] font-semibold text-danger">
+                  Warranty active
+                </span>
+              </div>
+
+              {/* contractor row */}
+              <div className="flex items-center gap-3 px-4 py-3.5">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-ai/10 text-[14px] font-bold text-ai">
+                  A
+                </span>
+                <div className="min-w-0 leading-tight">
+                  <div className="text-[10px] font-medium uppercase tracking-[0.1em] text-muted">
+                    Built by
+                  </div>
+                  <div className="truncate text-[15px] font-semibold text-ink">
+                    ABC Infrastructure Private Limited
+                  </div>
+                </div>
+              </div>
+
+              {/* detail grid */}
+              <div className="grid grid-cols-3 divide-x divide-line border-t border-line">
+                {[
+                  { l: "Sanctioned", v: "₹4.2 cr" },
+                  { l: "Last relaid", v: "Aug 2023" },
+                  { l: "Warranty", v: "till 2027" },
+                ].map((d) => (
+                  <div key={d.l} className="px-4 py-3">
+                    <div className="text-[10px] font-medium uppercase tracking-[0.08em] text-muted">
+                      {d.l}
+                    </div>
+                    <div className="mt-0.5 text-[14px] font-semibold text-ink">
+                      {d.v}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* responsible officer */}
+              <div className="flex items-center gap-2 border-t border-line bg-subtle px-4 py-2.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                <span className="text-[12px] text-muted">
+                  Responsible:{" "}
+                  <span className="font-medium text-ink">
+                    Executive Engineer, PWD Division 12
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            {/* example prompt chips */}
+            <div className="mx-auto mt-6 flex max-w-[520px] flex-col gap-2.5">
+              <div className="text-center text-[11px] font-medium uppercase tracking-[0.12em] text-white/50">
+                Just ask
+              </div>
+              {[
+                "Can you tell me who built this road?",
+                "Can you check my complaint status on Anand Vihar Road?",
+              ].map((p) => (
+                <div
+                  key={p}
+                  className="flex items-center gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-left backdrop-blur-sm"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="shrink-0 text-amber-400"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <span className="text-[13px] text-white/90">{p}</span>
                 </div>
               ))}
             </div>
-            <div className="mt-3 flex items-center gap-2 text-[12px] text-amber-300/90">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                <path d="M3 12l17-8-6 17-3-7-8-2z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-              </svg>
-              Routed to Executive Engineer, PWD Division 12
-            </div>
-          </div>
-
-          {/* step icons */}
-          <div className="mt-6 grid grid-cols-4 gap-2 text-center">
-            {[
-              { label: "Snap", icon: (
-                <><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" strokeWidth="1.8" /><circle cx="12" cy="13.5" r="3.2" stroke="currentColor" strokeWidth="1.8" /><path d="M8 7l1.5-2.5h5L16 7" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" /></>
-              ) },
-              { label: "Trace", icon: (
-                <><circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" /><path d="M20 20l-3.2-3.2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></>
-              ) },
-              { label: "Verify", icon: (
-                <><path d="M12 3l8 3v5c0 5-4 9-8 10-4-1-8-5-8-10V6l8-3z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" /><path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></>
-              ) },
-              { label: "Escalate", icon: (
-                <path d="M3 12l17-8-6 17-3-7-8-2z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-              ) },
-            ].map((s) => (
-              <div key={s.label} className="flex flex-col items-center gap-1.5">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">{s.icon}</svg>
-                </span>
-                <span className="text-[12px] text-white/80">{s.label}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* chips */}
-          <div className="mt-5 flex flex-wrap gap-2">
-            {["Contractor", "Budget", "Warranty", "Officer", "Escalation"].map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-white/10 px-3 py-1 text-[12px] text-white/85"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {/* stats */}
-          <div className="mt-6 grid grid-cols-3 gap-3 border-t border-white/10 pt-5">
-            {[
-              { n: "12,400+", l: "potholes reported" },
-              { n: "3,100", l: "complaints escalated" },
-              { n: "47", l: "contractors flagged" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="text-[20px] font-semibold tracking-tight text-white">
-                  {s.n}
-                </div>
-                <div className="text-[11px] leading-tight text-white/50">{s.l}</div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

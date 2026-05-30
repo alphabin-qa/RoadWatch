@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { dossierFor, answerFromDossier, DEMO_DOSSIER } from "./dossier";
 
-describe("dossier — deterministic contractor record", () => {
+describe("dossier - deterministic contractor record", () => {
   // Three different GPS fixes (different photos / locations)
   const fixes = [
     { lat: 12.9520, lng: 80.2430, accuracyM: 8 },

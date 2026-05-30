@@ -59,8 +59,8 @@ export async function GET(req: NextRequest) {
 
   const stretches = (contracts ?? []).map((c) => {
     const n = normFor(c.road_class, c.work_type);
-    let norm = "—";
-    let flag = "—";
+    let norm = "-";
+    let flag = "-";
     if (n && c.length_km && c.sanctioned_inr) {
       const perKm = c.sanctioned_inr / c.length_km;
       norm = `${formatINR(n.cost_per_km_min)}–${formatINR(n.cost_per_km_max)}/km`;
@@ -75,12 +75,12 @@ export async function GET(req: NextRequest) {
       display: `${c.road_name ?? c.road_match_pattern ?? "Road"} · ${city}`,
       roadClass: c.road_class,
       roadClassLabel: roadClassLabel(c.road_class),
-      chainage: "—",
+      chainage: "-",
       lastRelay: formatDate(c.last_relay_date),
-      contractor: nameById.get(c.contractor_id) ?? "—",
+      contractor: nameById.get(c.contractor_id) ?? "-",
       contractorId: c.contractor_id ?? null,
       contractId: c.id,
-      tenderId: c.tender_id ?? "—",
+      tenderId: c.tender_id ?? "-",
       sanctioned: formatINR(c.sanctioned_inr),
       spent: formatINR(c.spent_inr),
       norm,

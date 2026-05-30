@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 /**
- * Registers /sw.js for lite offline support. Only in production builds — a
+ * Registers /sw.js for lite offline support. Only in production builds - a
  * service worker in `next dev` fights with HMR. Renders nothing.
  */
 export default function ServiceWorkerRegister() {

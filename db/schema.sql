@@ -1,4 +1,4 @@
--- RoadWatch — Supabase schema (idempotent)
+-- RoadWatch - Supabase schema (idempotent)
 -- Apply via Supabase Dashboard → SQL Editor → New query → paste → Run.
 
 -- ============== EXTENSIONS ==============
@@ -226,7 +226,7 @@ create policy "anon upload photos" on storage.objects
 create policy "anon read photos" on storage.objects
   for select using (bucket_id = 'roadwatch-photos');
 
--- ============== SEED — cost norms (₹/km bands, MoRTH-style) ==============
+-- ============== SEED - cost norms (₹/km bands, MoRTH-style) ==============
 -- Idempotent: clear and re-insert the benchmark bands.
 delete from cost_norms;
 insert into cost_norms (road_class, work_type, terrain, cost_per_km_min, cost_per_km_max, source) values
@@ -241,10 +241,10 @@ insert into cost_norms (road_class, work_type, terrain, cost_per_km_min, cost_pe
   ('MUN', 'overlay',    'plain',   10000000, 15000000, 'Municipal SoR 2023 (city road overlay)'),
   ('PMGSY','new',       'plain',    6000000,  9000000, 'PMGSY OMMAS unit cost (new rural road)');
 
--- ============== SEED — contractors / contracts / officers ==============
+-- ============== SEED - contractors / contracts / officers ==============
 -- Demo road data lives in scripts/seed.mjs (~25 segments/city for Ahmedabad +
 -- Chennai, with GPS centres so map pins resolve). Run AFTER this schema:
 --     cd app && node scripts/seed.mjs
 -- (Kept out of this file so re-running the schema never wipes the seeded roads.)
 
--- DONE. Rerun this file anytime — it's idempotent.
+-- DONE. Rerun this file anytime - it's idempotent.

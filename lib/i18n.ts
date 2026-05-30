@@ -22,6 +22,7 @@ export const t = {
   noChats: { en: "No chats yet", hi: "अभी कोई चैट नहीं", ta: "இன்னும் அரட்டை இல்லை" } as Dict,
   citizen: { en: "Citizen", hi: "नागरिक", ta: "குடிமகன்" } as Dict,
   adminTag: { en: "Admin", hi: "एडमिन", ta: "அட்மின்" } as Dict,
+  signOut: { en: "Log out", hi: "लॉग आउट", ta: "வெளியேறு" } as Dict,
   online: { en: "Online", hi: "ऑनलाइन", ta: "ஆன்லைன்" } as Dict,
 
   // chat
@@ -32,8 +33,8 @@ export const t = {
   } as Dict,
   emptySub: {
     en: "Contractor, budget, safety, warranty status. Right here in chat.",
-    hi: "ठेकेदार, बजट, सुरक्षा, वारंटी — सब कुछ चैट में।",
-    ta: "ஒப்பந்ததாரர், பட்ஜெட், பாதுகாப்பு, உத்தரவாதம் — அனைத்தும் இங்கே.",
+    hi: "ठेकेदार, बजट, सुरक्षा, वारंटी - सब कुछ चैट में।",
+    ta: "ஒப்பந்ததாரர், பட்ஜெட், பாதுகாப்பு, உத்தரவாதம் - அனைத்தும் இங்கே.",
   } as Dict,
   placeholder: {
     en: "Message RoadWatch…",
@@ -83,9 +84,9 @@ export const t = {
   continueAnyway: { en: "Continue anyway", hi: "फिर भी जारी रखें", ta: "தொடரவும்" } as Dict,
   enableRetry: { en: "Enable & retry", hi: "चालू करें", ta: "இயக்கு" } as Dict,
   gpsWarnChat: {
-    en: "⚠️ Your GPS is off — I'm using an approximate location. Turn on location for exact road matching.",
-    hi: "⚠️ आपका GPS बंद है — मैं अनुमानित स्थान उपयोग कर रहा हूँ। सटीक मिलान के लिए लोकेशन चालू करें।",
-    ta: "⚠️ உங்கள் GPS அணைந்துள்ளது — தோராயமான இடம் பயன்படுத்துகிறேன். துல்லியத்திற்கு இருப்பிடத்தை இயக்கவும்.",
+    en: "⚠️ Your GPS is off - I'm using an approximate location. Turn on location for exact road matching.",
+    hi: "⚠️ आपका GPS बंद है - मैं अनुमानित स्थान उपयोग कर रहा हूँ। सटीक मिलान के लिए लोकेशन चालू करें।",
+    ta: "⚠️ உங்கள் GPS அணைந்துள்ளது - தோராயமான இடம் பயன்படுத்துகிறேன். துல்லியத்திற்கு இருப்பிடத்தை இயக்கவும்.",
   } as Dict,
   locating: {
     en: "Capturing your live location…",
@@ -93,14 +94,14 @@ export const t = {
     ta: "உங்கள் நேரடி இருப்பிடம் பெறப்படுகிறது…",
   } as Dict,
   askLocation: {
-    en: "Which road do you mean? Tap the camera to share a photo — then I'll pull up the contractor, budget, officer and warranty.",
-    hi: "आप किस सड़क की बात कर रहे हैं? कैमरे से फ़ोटो भेजें — फिर मैं ठेकेदार, बजट, अधिकारी और वारंटी दिखाऊँगा।",
-    ta: "எந்தச் சாலை? கேமராவில் படம் பகிரவும் — பிறகு ஒப்பந்ததாரர், பட்ஜெட், அதிகாரி, உத்தரவாதத்தைக் காட்டுகிறேன்.",
+    en: "Which road do you mean? Tap the camera to share a photo - then I'll pull up the contractor, budget, officer and warranty.",
+    hi: "आप किस सड़क की बात कर रहे हैं? कैमरे से फ़ोटो भेजें - फिर मैं ठेकेदार, बजट, अधिकारी और वारंटी दिखाऊँगा।",
+    ta: "எந்தச் சாலை? கேமராவில் படம் பகிரவும் - பிறகு ஒப்பந்ததாரர், பட்ஜெட், அதிகாரி, உத்தரவாதத்தைக் காட்டுகிறேன்.",
   } as Dict,
   demoHere: {
     en: "Here are the details for",
-    hi: "इसका विवरण यहाँ है —",
-    ta: "இதற்கான விவரங்கள் —",
+    hi: "इसका विवरण यहाँ है -",
+    ta: "இதற்கான விவரங்கள் -",
   } as Dict,
   sanctioned: { en: "Sanctioned", hi: "स्वीकृत", ta: "அனுமதிக்கப்பட்டது" } as Dict,
   spent: { en: "Spent", hi: "खर्च", ta: "செலவானது" } as Dict,
@@ -129,9 +130,9 @@ export const t = {
   copyTicket: { en: "Copy ticket ID", hi: "टिकट ID कॉपी करें", ta: "டிக்கெட் ID நகலெடு" } as Dict,
   copied: { en: "Copied", hi: "कॉपी किया", ta: "நகலெடுக்கப்பட்டது" } as Dict,
   trackLater: {
-    en: "You can track this anytime — just say \"track my complaint\".",
-    hi: "आप कभी भी ट्रैक कर सकते हैं — बस कहें \"मेरी शिकायत ट्रैक करें\"।",
-    ta: "எப்போது வேண்டுமானாலும் கண்காணிக்கலாம் — \"என் புகாரை கண்காணி\" என சொல்லுங்கள்.",
+    en: "You can track this anytime - just say \"track my complaint\".",
+    hi: "आप कभी भी ट्रैक कर सकते हैं - बस कहें \"मेरी शिकायत ट्रैक करें\"।",
+    ta: "எப்போது வேண்டுமானாலும் கண்காணிக்கலாம் - \"என் புகாரை கண்காணி\" என சொல்லுங்கள்.",
   } as Dict,
 
   // stretch cards
@@ -263,9 +264,9 @@ export const t = {
     ta: "இது எங்கே? வரைபடத்தில் தட்டு.",
   } as Dict,
   optionalSkip: {
-    en: "Optional — you can skip.",
-    hi: "वैकल्पिक — छोड़ सकते हैं।",
-    ta: "விருப்பத்தேர்வு — தவிர்க்கலாம்.",
+    en: "Optional - you can skip.",
+    hi: "वैकल्पिक - छोड़ सकते हैं।",
+    ta: "விருப்பத்தேர்வு - தவிர்க்கலாம்.",
   } as Dict,
   useMyLocation: {
     en: "Use my location",
@@ -283,14 +284,14 @@ export const t = {
   demoMode: { en: "Demo mode", hi: "डेमो मोड", ta: "டெமோ பயன்முறை" } as Dict,
   liveMode: { en: "Live", hi: "लाइव", ta: "நேரடி" } as Dict,
   demoOnTip: {
-    en: "Sample data — no DB writes.",
-    hi: "नमूना डेटा — DB में नहीं लिखा जा रहा।",
-    ta: "மாதிரி தரவு — DB-இல் எழுதப்படவில்லை.",
+    en: "Sample data - no DB writes.",
+    hi: "नमूना डेटा - DB में नहीं लिखा जा रहा।",
+    ta: "மாதிரி தரவு - DB-இல் எழுதப்படவில்லை.",
   } as Dict,
   liveOnTip: {
-    en: "Live data — chats and complaints persist.",
-    hi: "लाइव डेटा — चैट और शिकायतें सुरक्षित होती हैं।",
-    ta: "நேரடி தரவு — அரட்டைகள் & புகார்கள் சேமிக்கப்படும்.",
+    en: "Live data - chats and complaints persist.",
+    hi: "लाइव डेटा - चैट और शिकायतें सुरक्षित होती हैं।",
+    ta: "நேரடி தரவு - அரட்டைகள் & புகார்கள் சேமிக்கப்படும்.",
   } as Dict,
 
   // contractor lookup

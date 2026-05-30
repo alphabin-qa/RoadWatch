@@ -5,7 +5,7 @@ import { Icons, IconBadge, MapThumb } from "@/components/Illustration";
 
 /**
  * The full "who built this road" dossier shown after a photo + GPS resolve:
- * road, contractor, work dates, license, owner, tender — every field the
+ * road, contractor, work dates, license, owner, tender - every field the
  * proposal's accountability flow calls for, on one card.
  */
 export default function DossierCard({

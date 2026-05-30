@@ -49,7 +49,7 @@ export async function flushQueue(): Promise<{ synced: number; remaining: number 
         synced++;
       }
     } catch {
-      /* still offline — stop trying for now */
+      /* still offline - stop trying for now */
       break;
     }
   }

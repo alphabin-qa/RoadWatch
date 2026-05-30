@@ -1,4 +1,4 @@
-// Shared shapes for a "resolved stretch" — the data a chat card renders.
+// Shared shapes for a "resolved stretch" - the data a chat card renders.
 //
 // The hardcoded `stretch` in sampleData.ts conforms to ResolvedStretch and is the
 // fallback. When a citizen pins a real road, /api/match-contractor + /api/locate
@@ -84,7 +84,7 @@ export type ReasoningStep = {
   detail?: string;
 };
 
-/** Result of actually filing a complaint — drives the live TrackingCard. */
+/** Result of actually filing a complaint - drives the live TrackingCard. */
 export type FiledInfo = {
   ticketId: string;
   slaDays: number;

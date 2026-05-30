@@ -220,8 +220,8 @@ describe("isValidIndianPincode", () => {
   });
 });
 
-describe("parseNominatim — pan-India coverage", () => {
-  it("Surat (Gujarat) — taluka-as-city fallback", () => {
+describe("parseNominatim - pan-India coverage", () => {
+  it("Surat (Gujarat) - taluka-as-city fallback", () => {
     const r = parseNominatim({
       address: {
         suburb: "Udhana",
@@ -237,7 +237,7 @@ describe("parseNominatim — pan-India coverage", () => {
     expect(r?.pincode).toBe("395010");
   });
 
-  it("Surat — drops bogus pincode (e.g. starts with 0)", () => {
+  it("Surat - drops bogus pincode (e.g. starts with 0)", () => {
     const r = parseNominatim({
       address: { city: "Surat", state: "Gujarat", postcode: "095010" },
     });
@@ -291,7 +291,7 @@ describe("parseNominatim — pan-India coverage", () => {
     expect(r?.state).toBe("Telangana");
   });
 
-  it("Kochi (Kerala) — Malayalam codepoints survive parsing", () => {
+  it("Kochi (Kerala) - Malayalam codepoints survive parsing", () => {
     const r = parseNominatim({
       address: { road: "എം.ജി. റോഡ്", city: "കൊച്ചി", state: "Kerala" },
     });
@@ -300,7 +300,7 @@ describe("parseNominatim — pan-India coverage", () => {
     expect(r?.state).toBe("Kerala");
   });
 
-  it("Tribal Dang district (rural Gujarat) — town fallback", () => {
+  it("Tribal Dang district (rural Gujarat) - town fallback", () => {
     const r = parseNominatim({
       address: {
         town: "Ahwa",
@@ -312,7 +312,7 @@ describe("parseNominatim — pan-India coverage", () => {
     expect(r?.city).toBe("Ahwa");
   });
 
-  it("North-East — Imphal (Manipur)", () => {
+  it("North-East - Imphal (Manipur)", () => {
     const r = parseNominatim({
       address: {
         suburb: "Thangmeiband",

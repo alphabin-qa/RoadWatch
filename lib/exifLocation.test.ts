@@ -30,7 +30,7 @@ describe("extractGps", () => {
     });
   });
 
-  // Null Island — many cameras write 0,0 when GPS lock fails. Treat as missing.
+  // Null Island - many cameras write 0,0 when GPS lock fails. Treat as missing.
   it("rejects 0,0 (Null Island, common GPS failure)", () => {
     expect(extractGps({ latitude: 0, longitude: 0 })).toBeNull();
   });
@@ -84,6 +84,6 @@ describe("formatLatLng", () => {
   });
 
   it("returns a placeholder for null", () => {
-    expect(formatLatLng(null)).toMatch(/—|no/i);
+    expect(formatLatLng(null)).toMatch(/-|no/i);
   });
 });

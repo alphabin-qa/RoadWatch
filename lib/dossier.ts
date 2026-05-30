@@ -1,5 +1,5 @@
 // Deterministic demo dossier. For the demo, ANY uploaded photo resolves to this
-// same contractor record — but the GPS coordinates shown are the device's real
+// same contractor record - but the GPS coordinates shown are the device's real
 // live coordinates. This keeps the narrative ("it found my road") while the
 // underlying data stays stable and verifiable across repeated uploads.
 
@@ -103,7 +103,7 @@ export function reasoningSteps(
     });
   } else {
     steps.push({
-      label: "GPS unavailable — using last known area",
+      label: "GPS unavailable - using last known area",
       detail: "Enable location for precise road matching",
     });
   }
@@ -195,9 +195,9 @@ export function answerFromDossier(
       matched: true,
       reply: d.dlpActive
         ? L(
-            `Yes — still under defect liability period until ${d.dlpUntil}. ${d.contractor} must repair defects free.`,
-            `हाँ — ${d.dlpUntil} तक दोष दायित्व अवधि में है। ${d.contractor} को मुफ्त मरम्मत करनी होगी।`,
-            `ஆம் — ${d.dlpUntil} வரை குறைபாடு பொறுப்புக் காலத்தில். ${d.contractor} இலவசமாக சரிசெய்ய வேண்டும்.`,
+            `Yes - still under defect liability period until ${d.dlpUntil}. ${d.contractor} must repair defects free.`,
+            `हाँ - ${d.dlpUntil} तक दोष दायित्व अवधि में है। ${d.contractor} को मुफ्त मरम्मत करनी होगी।`,
+            `ஆம் - ${d.dlpUntil} வரை குறைபாடு பொறுப்புக் காலத்தில். ${d.contractor} இலவசமாக சரிசெய்ய வேண்டும்.`,
           )
         : L("Warranty has expired.", "वारंटी समाप्त।", "உத்தரவாதம் காலாவதி."),
       card: "attribution",

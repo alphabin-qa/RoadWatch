@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "out of range" }, { status: 400 });
     }
 
-    // Pan-India language support — Nominatim falls back to English when
+    // Pan-India language support - Nominatim falls back to English when
     // a translation isn't present, so passing the user's mother tongue is safe.
     const SUPPORTED = new Set([
       "en", "hi", "ta",                                   // already in UI

@@ -35,14 +35,14 @@ export function KPIRow({ locale }: { locale: Locale }) {
     : [
         {
           k: t.openComplaints[locale],
-          v: live?.open?.toString() ?? "—",
+          v: live?.open?.toString() ?? "-",
           d: `${live?.total ?? 0} total`,
         },
-        { k: t.slaBreaches[locale], v: "—", d: "live" },
-        { k: t.costInaction[locale], v: "—", d: "live" },
+        { k: t.slaBreaches[locale], v: "-", d: "live" },
+        { k: t.costInaction[locale], v: "-", d: "live" },
         {
           k: "Cities",
-          v: live?.cities?.toString() ?? "—",
+          v: live?.cities?.toString() ?? "-",
           d: "covered",
         },
       ];
@@ -75,10 +75,10 @@ export function ComplaintsTable({ locale }: { locale: Locale }) {
         setLiveRows(
           all.slice(0, 8).map((c) => ({
             id: c.id,
-            subject: c.subject ?? c.road_name ?? "—",
-            city: c.city ?? "—",
+            subject: c.subject ?? c.road_name ?? "-",
+            city: c.city ?? "-",
             status: c.status,
-            contractor: c.contractors?.name?.replace(/^SEED:/, "") ?? "—",
+            contractor: c.contractors?.name?.replace(/^SEED:/, "") ?? "-",
           })),
         );
       })

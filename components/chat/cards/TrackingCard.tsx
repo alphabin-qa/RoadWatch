@@ -36,7 +36,7 @@ export default function TrackingCard({
     ? [
         { at: "just now", label: `Filed to ${filed.portal}`, done: true },
         { at: "just now", label: "Acknowledged · Ref generated", done: true },
-        { at: "—", label: "Assigned for site inspection", done: false },
+        { at: "-", label: "Assigned for site inspection", done: false },
       ]
     : tracking.timeline;
 

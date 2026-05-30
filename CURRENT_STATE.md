@@ -1,4 +1,4 @@
-# RoadWatch — what the application currently does
+# RoadWatch - what the application currently does
 
 This file describes the state of the codebase as it stands today, not the full
 hackathon blueprint. For the long-term vision (F1–F13, ML, Bhashini, offline
@@ -9,7 +9,7 @@ SLM, cross-country, dashboards), see `../project-description/README.md`.
 A Next.js 14 PWA that lets a citizen open a chat, upload or shoot a photo of a
 bad road, drop a pin on a map, and get back a Gemini-generated reply plus a
 themed "card" (road attribution, budget, officer, draft complaint, tracking,
-etc.) — with chats and complaints persisted to Supabase in live mode, or kept
+etc.) - with chats and complaints persisted to Supabase in live mode, or kept
 purely client-side in demo mode.
 
 ## Tech stack actually wired up
@@ -17,7 +17,7 @@ purely client-side in demo mode.
 | Layer | Choice |
 |---|---|
 | Framework | Next.js 14 (app router) + React 18 + TypeScript |
-| Styling | Tailwind 3 — warm minimal palette (`paper`, `ink`, `muted`, `line`, `accent`) |
+| Styling | Tailwind 3 - warm minimal palette (`paper`, `ink`, `muted`, `line`, `accent`) |
 | LLM | Google Generative AI SDK (`gemini-2.5-flash-lite`) for chat + vision |
 | DB | Supabase Postgres (anon, open RLS) |
 | Storage | Supabase Storage bucket `roadwatch-photos` |
@@ -28,7 +28,7 @@ purely client-side in demo mode.
 | PWA | `public/manifest.json` + icon, no service worker yet |
 
 The blueprint mentions FastAPI, PostGIS, YOLOv8, Gemma-2B, Bhashini, IndicTrans2,
-ChromaDB, MapLibre, WhatsApp bot — **none of those are in this codebase**. The
+ChromaDB, MapLibre, WhatsApp bot - **none of those are in this codebase**. The
 app is Next.js end-to-end, with Gemini doing the LLM/vision work.
 
 ## Routes
@@ -41,7 +41,7 @@ app is Next.js end-to-end, with Gemini doing the LLM/vision work.
 | `/admin` | District-style dashboard (KPIs, complaints table, cost heatmap, contractor scorecard). |
 
 There is no `/report`, `/stretch/demo`, or `/complaint/demo` page despite what
-the in-app `app/README.md` says — those have been replaced by the chat-centric
+the in-app `app/README.md` says - those have been replaced by the chat-centric
 flow.
 
 ## Two modes: demo vs live
@@ -100,23 +100,23 @@ a card and a canned message is shown.
 ## Cards (`components/chat/cards/*`)
 
 All cards currently read from the same hardcoded `stretch` object in
-`lib/sampleData.ts` — they do not yet render data resolved from the actual
+`lib/sampleData.ts` - they do not yet render data resolved from the actual
 photo/location.
 
-- **AttributionCard** — road class, last relay date, contractor, DLP status.
-- **BudgetCard** — sanctioned vs spent, ₹/km vs norm flag, tender ID.
-- **OfficerCard** — current responsible officer + escalation ladder.
-- **ComplaintCard** — multilingual draft (en/hi/ta), citation chips
+- **AttributionCard** - road class, last relay date, contractor, DLP status.
+- **BudgetCard** - sanctioned vs spent, ₹/km vs norm flag, tender ID.
+- **OfficerCard** - current responsible officer + escalation ladder.
+- **ComplaintCard** - multilingual draft (en/hi/ta), citation chips
   (IRC SP-16, MoRTH 5.3, DLP), "File" button which fires a
   `rw:filed-complaint` window event. The chat listens and appends a
-  `tracking` card. **Today this only updates the UI** — it does not call any
+  `tracking` card. **Today this only updates the UI** - it does not call any
   CPGRAMS API, does not insert a row into the `complaints` table, and does
   not generate a `CP-####` ID.
-- **TrackingCard** — fake timeline + SLA timer + escalation visualisation.
-- **CrashCard** — fatalities/injuries from the seeded `stretch.crashes` object.
-- **CostCard** — fuel L/day, CO₂ kg, noise events, ₹/day cost-of-inaction
+- **TrackingCard** - fake timeline + SLA timer + escalation visualisation.
+- **CrashCard** - fatalities/injuries from the seeded `stretch.crashes` object.
+- **CostCard** - fuel L/day, CO₂ kg, noise events, ₹/day cost-of-inaction
   (all hardcoded).
-- **MonsoonCard** — current pothole dimensions vs forecast (hardcoded).
+- **MonsoonCard** - current pothole dimensions vs forecast (hardcoded).
 
 ## API routes (`app/api/*`)
 
@@ -136,15 +136,15 @@ photo/location.
 
 Idempotent SQL applied via the Supabase SQL editor. Tables:
 
-- `chats`, `messages` — anonymous browser-session-keyed chat history.
-- `contractors`, `contracts`, `officers` — seeded with ~6 SEED contractors
+- `chats`, `messages` - anonymous browser-session-keyed chat history.
+- `contractors`, `contracts`, `officers` - seeded with ~6 SEED contractors
   across Chennai/Surat/Ahmedabad and a 5-rank officer ladder per city. One
   contract has a real-looking pattern (`omr|service`) so the OMR demo lights
   up via `/api/match-contractor`.
-- `complaints`, `complaint_photos`, `complaint_events` — citizen complaint
+- `complaints`, `complaint_photos`, `complaint_events` - citizen complaint
   schema with snapped lat/lng, enriched address, attributed contractor /
   contract, escalation rank, SLA, timeline events. **Insertion code is not
-  fully wired in the chat flow yet** — the schema is there ahead of the UI.
+  fully wired in the chat flow yet** - the schema is there ahead of the UI.
 - Storage bucket `roadwatch-photos` (public read, anon insert).
 - RLS enabled but with fully open anon policies (hackathon grade).
 
@@ -159,26 +159,26 @@ model to reply in the user's last-message language regardless.
 
 `AdminCommandBar` plus four widgets in `components/admin/Widgets.tsx`:
 
-- `KPIRow` — open complaints, SLA breaches, ₹ cost-of-inaction, top
+- `KPIRow` - open complaints, SLA breaches, ₹ cost-of-inaction, top
   contractor. Demo numbers are hardcoded; live mode pulls counts from
   `/api/complaints?all=1`.
-- `ComplaintsTable` — first 8 complaints from the API.
-- `CostHeatmap` — illustrative SVG only.
-- `ContractorScorecard` — illustrative table only.
+- `ComplaintsTable` - first 8 complaints from the API.
+- `CostHeatmap` - illustrative SVG only.
+- `ContractorScorecard` - illustrative table only.
 
 ## What is NOT yet built (vs the blueprint)
 
-For honesty about scope — none of the following are implemented:
+For honesty about scope - none of the following are implemented:
 
 - Offline / PWA service worker, on-device SLM, district-cache.
 - YOLOv8 defect classifier or any vision model beyond Gemini's reading of
   signage in `/api/identify-road`.
 - Real CPGRAMS / Rajmargayatra / e-MARG submission. The "File" button is UI
   only and does not insert into the `complaints` table.
-- Bhashini ASR/TTS or IndicTrans2 — no voice input/output.
+- Bhashini ASR/TTS or IndicTrans2 - no voice input/output.
 - Auto-escalation timer/cron. Escalation ladders render but don't tick.
 - Real crash data (iRAD/NCRB), real blackspot data, real RSAs.
-- Monsoon / degradation ML model (F12) — the monsoon card shows a static
+- Monsoon / degradation ML model (F12) - the monsoon card shows a static
   before/after.
 - Hidden-cost calculator (F13) is a static card, not a model output.
 - Cross-country (Nepal/Bangladesh/Sri Lanka) stub.

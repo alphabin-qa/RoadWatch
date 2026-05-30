@@ -1,4 +1,4 @@
-// Synthetic demo seed for RoadWatch — ~25 road segments each for Ahmedabad and
+// Synthetic demo seed for RoadWatch - ~25 road segments each for Ahmedabad and
 // Chennai, with real GPS centres so map pins resolve to a contract. Idempotent:
 // wipes prior SEED:% rows and re-inserts. Deterministic: a tiny LCG drives all
 // "randomness", so every run produces identical data.
@@ -26,7 +26,7 @@ function loadEnv() {
       }
     }
   } catch {
-    /* no .env.local — rely on real env */
+    /* no .env.local - rely on real env */
   }
 }
 loadEnv();
@@ -185,7 +185,7 @@ function buildContracts(cityName, conf, contractorRows) {
       contractor_id: contractorRows[i % contractorRows.length].id,
       tender_id: tenderId,
       road_name: name,
-      road_match_pattern: name.split(/[ –—(]/)[0].toLowerCase(),
+      road_match_pattern: name.split(/[ –-(]/)[0].toLowerCase(),
       road_class: klass,
       jurisdiction_city: cityName,
       jurisdiction_state: conf.state,
@@ -247,7 +247,7 @@ async function main() {
     if (cErr) throw cErr;
     totalContracts += contracts.length;
 
-    // officers — one ladder per city, linked to the first contractor row
+    // officers - one ladder per city, linked to the first contractor row
     const ladder = ladderFor(cityName, conf.state).map((o) => ({
       ...o,
       contractor_id: contractorRows[0].id,

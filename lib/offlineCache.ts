@@ -28,7 +28,7 @@ export async function cacheDistrict(city: string): Promise<void> {
       await idbPut("districts", { city, stretches, cachedAt: Date.now() });
     }
   } catch {
-    /* offline or no DB — skip */
+    /* offline or no DB - skip */
   }
 }
 

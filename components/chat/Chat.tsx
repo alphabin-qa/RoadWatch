@@ -33,7 +33,7 @@ export default function Chat({
   const demo = useDemoMode();
   const [messages, setMessages] = useState<Msg[]>([]);
   const [chatId, setChatId] = useState<string | null>(null);
-  // Most recently resolved road — reused by text follow-ups so they answer about
+  // Most recently resolved road - reused by text follow-ups so they answer about
   // the resolved road (the dossier), not a hardcoded sample.
   const [lastStretch, setLastStretch] = useState<ResolvedStretch | null>(null);
   const [online, setOnline] = useState(true);
@@ -106,7 +106,7 @@ export default function Chat({
     bottom.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // React to URL changes — clear when no ?chat= present, hydrate when one is.
+  // React to URL changes - clear when no ?chat= present, hydrate when one is.
   const searchParams = useSearchParams();
   const chatParam = searchParams.get("chat");
 
@@ -266,7 +266,7 @@ export default function Chat({
 
     const suggestions = lastStretch ? SUGGESTIONS[locale] : undefined;
 
-    // DEMO MODE — app-driven, deterministic. Answer from the resolved dossier,
+    // DEMO MODE - app-driven, deterministic. Answer from the resolved dossier,
     // or ask for a location when nothing is resolved.
     if (demo) {
       await new Promise((r) => setTimeout(r, 350));
@@ -280,7 +280,7 @@ export default function Chat({
       return;
     }
 
-    // LIVE MODE — core accountability questions (who built / tender / license /
+    // LIVE MODE - core accountability questions (who built / tender / license /
     // owner / warranty / officer) are answered deterministically so the facts are
     // always correct and consistent. Free-form questions go to the real LLM with
     // the resolved road as context.

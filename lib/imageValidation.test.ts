@@ -211,7 +211,7 @@ describe("validationMessage", () => {
     expect(msg).toMatch(/[\u0B80-\u0BFF]/);
   });
 
-  it("messages stay short — under 90 chars across all codes/locales", () => {
+  it("messages stay short - under 90 chars across all codes/locales", () => {
     for (const c of codes) {
       for (const l of ["en", "hi", "ta"] as const) {
         expect(

@@ -1,4 +1,4 @@
-// Sample data for the skeleton. No API calls — keyword matcher picks a card.
+// Sample data for the skeleton. No API calls - keyword matcher picks a card.
 
 import type { ResolvedStretch } from "./types";
 
@@ -46,7 +46,7 @@ export type Complaint = {
   subject: string;          // AI-summarised subject line
   description: string;      // AI-polished formal body (what is filed)
   originalUserText: string; // citizen's own words, shown as "original"
-  photos: number[];         // 1..3 — picked by PotholePhoto (fallback)
+  photos: number[];         // 1..3 - picked by PotholePhoto (fallback)
   photoUrls?: string[];     // real photos under /public/defects (preferred)
   stretch: string;
   chainage: string;
@@ -209,9 +209,9 @@ export const complaints: Complaint[] = [
       { at: "22 Apr 2026, 14:02", label: "Filed to CPGRAMS", done: true },
       { at: "22 Apr 2026, 14:04", label: "Acknowledged · Ref generated", done: true },
       { at: "23 Apr 2026, 10:11", label: "Assigned to AE, Chennai South", done: true },
-      { at: "—", label: "Site inspection scheduled", done: false },
-      { at: "—", label: "Repair order issued", done: false },
-      { at: "—", label: "Closed", done: false },
+      { at: "-", label: "Site inspection scheduled", done: false },
+      { at: "-", label: "Repair order issued", done: false },
+      { at: "-", label: "Closed", done: false },
     ],
     escalation: ladder(2),
   },
@@ -240,7 +240,7 @@ export const complaints: Complaint[] = [
       { at: "30 Mar 2026, 12:30", label: "Assigned to AE, Chennai South", done: true },
       { at: "14 Apr 2026, 11:05", label: "Inspection done · No action taken", done: true },
       { at: "21 Apr 2026, 16:00", label: "Auto-escalated to Executive Engineer", done: true },
-      { at: "—", label: "Repair order issued", done: false },
+      { at: "-", label: "Repair order issued", done: false },
     ],
     escalation: ladder(3),
   },

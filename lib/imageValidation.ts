@@ -1,7 +1,7 @@
 // Pure validation utilities for citizen-uploaded photos.
 // Two stages so each is independently testable:
-//   1) validateMeta(file)        — MIME, size, name extension
-//   2) analyzePixels(pixels)     — luminance + variance checks on decoded data
+//   1) validateMeta(file)        - MIME, size, name extension
+//   2) analyzePixels(pixels)     - luminance + variance checks on decoded data
 // Runtime helpers in this file (decode + analyze in one go) live below.
 
 import type { Locale } from "./i18n";
@@ -34,7 +34,7 @@ const ALLOWED_MIME = new Set([
 
 const IMAGE_EXT_RE = /\.(jpe?g|png|webp|heic|heif|gif)$/i;
 
-/** Stage 1 — metadata only. No async. */
+/** Stage 1 - metadata only. No async. */
 export function validateMeta(
   file: File | null | undefined,
 ): ValidationCode {
@@ -54,7 +54,7 @@ export function validateMeta(
   return "ok";
 }
 
-/** Stage 2 — decoded pixel analysis. */
+/** Stage 2 - decoded pixel analysis. */
 export function analyzePixels(input: {
   width: number;
   height: number;
@@ -94,7 +94,7 @@ export function analyzePixels(input: {
   return "ok";
 }
 
-// ---------- Messages — minimal, contextual, three languages ----------
+// ---------- Messages - minimal, contextual, three languages ----------
 
 const MESSAGES: Record<
   ValidationCode,
@@ -150,7 +150,7 @@ export function validationMessage(
   return row[locale] ?? row.en;
 }
 
-// ---------- Runtime helper (browser-only) — decode then analyze ----------
+// ---------- Runtime helper (browser-only) - decode then analyze ----------
 
 /**
  * Validate an image fully (meta + decoded pixels). Intended for browser use.
@@ -174,7 +174,7 @@ export async function validateImage(
     }
   } catch {
     // If the browser can't decode it (e.g. iOS HEIC on a non-iOS browser),
-    // accept on meta alone — server / Gemini will catch it later.
+    // accept on meta alone - server / Gemini will catch it later.
     return "ok";
   }
 }
@@ -193,7 +193,7 @@ function drawAndSample(img: HTMLImageElement): {
   height: number;
   data: Uint8ClampedArray;
 } {
-  // Downsample big photos for speed — 256px on the long side is plenty for stats.
+  // Downsample big photos for speed - 256px on the long side is plenty for stats.
   const longSide = Math.max(img.naturalWidth, img.naturalHeight);
   const scale = longSide > 256 ? 256 / longSide : 1;
   const w = Math.max(1, Math.round(img.naturalWidth * scale));

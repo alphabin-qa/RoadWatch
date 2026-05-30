@@ -13,9 +13,9 @@ const config: Config = {
         line: "#e8e4dc",        // warm beige borders
         muted: "#6b6357",       // warm muted text
         accent: "#10a37f",      // success / online green
-        ai: "#6d56e0",          // violet — reserved for AI-driven features
-        warn: "#b45309",        // amber — SLA warnings
-        danger: "#b91c1c",      // red — breaches
+        ai: "#6d56e0",          // violet - reserved for AI-driven features
+        warn: "#b45309",        // amber - SLA warnings
+        danger: "#b91c1c",      // red - breaches
       },
       fontFamily: {
         sans: [

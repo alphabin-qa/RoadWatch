@@ -1,4 +1,4 @@
-// Browser Supabase client. Publishable key only — safe to expose.
+// Browser Supabase client. Publishable key only - safe to expose.
 
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 

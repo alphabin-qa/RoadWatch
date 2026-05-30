@@ -6,7 +6,7 @@
 
 ### AI road-accountability chatbot for citizens
 
-*Snap a pothole. Get the contractor, the budget, the responsible officer, the warranty — and file the complaint. In one chat.*
+*Snap a pothole. Get the contractor, the budget, the responsible officer, the warranty - and file the complaint. In one chat.*
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-18-149eca?logo=react)](https://react.dev/)
@@ -28,8 +28,8 @@ Which contractor laid this road? Was it within warranty? How much public money w
 sanctioned vs spent? Who is the officer responsible, and what is their SLA? Filing a
 complaint means navigating CPGRAMS forms in English, with no follow-up and no teeth.
 
-The accountability data *exists* — in tender records, contractor licences, DLP
-(Defect Liability Period) clauses, and officer ledgers — but it is **scattered, opaque,
+The accountability data *exists* - in tender records, contractor licences, DLP
+(Defect Liability Period) clauses, and officer ledgers - but it is **scattered, opaque,
 and never put in front of the person standing next to the pothole.**
 
 ## 💡 What RoadWatch does
@@ -43,8 +43,8 @@ flow**, in the citizen's own language:
 > 📝 *AI drafts a complaint citing the actual engineering clauses (IRC / MoRTH / DLP)* →
 > 🚦 *Files it, tracks the SLA, and auto-escalates up the officer ladder if breached.*
 
-Everything is rendered as **themed, glanceable cards** inside the chat — not walls of
-text — so a non-technical citizen understands *exactly* who is accountable and what
+Everything is rendered as **themed, glanceable cards** inside the chat - not walls of
+text - so a non-technical citizen understands *exactly* who is accountable and what
 happens next.
 
 ---
@@ -52,22 +52,22 @@ happens next.
 ## ✨ Key features
 
 ### 👤 For the citizen
-- **Chat-first interface** — ask about any road in plain English, हिंदी, or தமிழ்.
-- **Photo → road attribution** — upload a photo or capture live; we read EXIF GPS,
+- **Chat-first interface** - ask about any road in plain English, हिंदी, or தமிழ்.
+- **Photo → road attribution** - upload a photo or capture live; we read EXIF GPS,
   snap to the nearest road (OSRM), and reverse-geocode it (Nominatim). No GPS? Gemini
   Vision reads signage/script to guess the locality.
-- **Live GPS report flow** with a transparent **reasoning trace** — the app *shows its
+- **Live GPS report flow** with a transparent **reasoning trace** - the app *shows its
   work* as it resolves your road, builds the dossier, and finds the contractor.
 - **Accountability dossier cards**:
-  - 🏗️ **Attribution** — road class, last relaying date, contractor, DLP/warranty status
-  - 💰 **Budget** — sanctioned vs spent, ₹/km vs MoRTH norm, tender ID
-  - 👔 **Officer** — the responsible officer + the full escalation ladder
-  - 📋 **Complaint** — multilingual AI draft citing IRC SP-16 / MoRTH 5.3 / DLP clauses
-  - 🚦 **Tracking** — ticket, SLA timer, escalation path, timeline
-  - 📉 **True cost** — fuel, CO₂, time, and ₹/day cost-of-inaction for the stretch
+  - 🏗️ **Attribution** - road class, last relaying date, contractor, DLP/warranty status
+  - 💰 **Budget** - sanctioned vs spent, ₹/km vs MoRTH norm, tender ID
+  - 👔 **Officer** - the responsible officer + the full escalation ladder
+  - 📋 **Complaint** - multilingual AI draft citing IRC SP-16 / MoRTH 5.3 / DLP clauses
+  - 🚦 **Tracking** - ticket, SLA timer, escalation path, timeline
+  - 📉 **True cost** - fuel, CO₂, time, and ₹/day cost-of-inaction for the stretch
   - 🩸 **Crash history** & 🌧️ **Monsoon forecast** for the stretch
 - **Complaint filing** routed to **CPGRAMS** with a 30-day SLA and auto-escalation framing.
-- **Offline-ready PWA** — installable, works with no network, queues complaints, and
+- **Offline-ready PWA** - installable, works with no network, queues complaints, and
   caches district road data for lookups in low-connectivity areas.
 
 ### 🏛️ For the administrator (`/admin`)
@@ -76,7 +76,7 @@ happens next.
 
 ### 🌐 Cross-cutting
 - **Tri-lingual** UI (English / Hindi / Tamil) with the LLM replying in the user's language.
-- **Secure auth** via Clerk — protected routes, hosted sign-in/sign-up.
+- **Secure auth** via Clerk - protected routes, hosted sign-in/sign-up.
 - **Demo mode ↔ Live mode** toggle (see below).
 
 ---
@@ -122,9 +122,9 @@ happens next.
 | Layer | Technology |
 |---|---|
 | **Framework** | Next.js 14 (App Router) · React 18 · TypeScript 5.5 |
-| **Styling** | Tailwind CSS 3 — warm-minimal design system (`paper` / `ink` / `muted` / `line` / `accent`) |
-| **AI / LLM** | Google Generative AI — **Gemini 2.5 Flash** for chat **and** vision |
-| **Auth** | **Clerk** (`@clerk/nextjs`) — middleware-protected routes |
+| **Styling** | Tailwind CSS 3 - warm-minimal design system (`paper` / `ink` / `muted` / `line` / `accent`) |
+| **AI / LLM** | Google Generative AI - **Gemini 2.5 Flash** for chat **and** vision |
+| **Auth** | **Clerk** (`@clerk/nextjs`) - middleware-protected routes |
 | **Database** | **Supabase** Postgres (RLS enabled) + Supabase Storage (`roadwatch-photos`) |
 | **Maps** | Leaflet + OpenStreetMap tiles |
 | **Geo** | OSRM `/nearest` (snap-to-road) · Nominatim (reverse geocode) |
@@ -137,30 +137,30 @@ happens next.
 
 ## 🔬 How the "magic" works
 
-### 1 — Photo → exact road
+### 1 - Photo → exact road
 `exifr` pulls GPS from the photo's EXIF → if found, the **Leaflet `LocationPicker`**
 pre-pins it (user can adjust or skip) → `/api/locate` calls **OSRM** to snap the point
 to the nearest road centreline, then **Nominatim** to reverse-geocode a human address.
 No EXIF and no pin? `/api/identify-road` sends the image to **Gemini Vision**, which
 reads signage and script to return a confidence-scored locality guess.
 
-### 2 — Reasoning trace + dossier
+### 2 - Reasoning trace + dossier
 The live report flow streams a **step-by-step reasoning trace** ("locating… snapping to
 road… matching contractor…") so the citizen sees the system *think*. It resolves to a
-**contractor dossier** (`lib/dossier.ts`) — road class, tender, contractor, sanctioned
+**contractor dossier** (`lib/dossier.ts`) - road class, tender, contractor, sanctioned
 vs spent, ₹/km vs norm flag, DLP status, responsible officer + escalation ladder.
 
-### 3 — Conversational LLM with structured cards
+### 3 - Conversational LLM with structured cards
 `/api/chat` calls Gemini with a system prompt that forces a **strict JSON** response of
 `{ reply, card }`, where `card ∈ attribution | budget | officer | complaint | tracking |
 cost | crash | monsoon | none`. The card kind deterministically selects which themed
-React card renders below the message — so the LLM drives *content*, not layout.
+React card renders below the message - so the LLM drives *content*, not layout.
 If the model call fails, a **keyword matcher fallback** still picks a sensible card.
 
-### 4 — Complaint, SLA & escalation
+### 4 - Complaint, SLA & escalation
 The complaint card produces a **multilingual draft** with **engineering-clause citations**
 (IRC SP-16, MoRTH 5.3, DLP). Filing routes to CPGRAMS framing, opens a tracking card with
-an **SLA timer and escalation ladder**, and — offline — the complaint is **queued in
+an **SLA timer and escalation ladder**, and - offline - the complaint is **queued in
 IndexedDB and flushed when connectivity returns.**
 
 ---
@@ -169,27 +169,27 @@ IndexedDB and flushed when connectivity returns.**
 
 This is where RoadWatch goes beyond a demo:
 
-- **🌍 Internationalisation** — full UI string catalogue for **English / Hindi / Tamil**
+- **🌍 Internationalisation** - full UI string catalogue for **English / Hindi / Tamil**
   (`lib/i18n.ts`); the LLM is instructed to answer in the user's language.
-- **📶 Offline-first PWA** — installable manifest + service worker (`public/sw.js`) caches
+- **📶 Offline-first PWA** - installable manifest + service worker (`public/sw.js`) caches
   the app shell; **IndexedDB** caches district road data for offline lookups and **queues
   complaints** filed with no network, auto-syncing on reconnect.
-- **🔀 Demo mode ↔ Live mode** — a single toggle. **Demo** runs entirely client-side from
-  seeded sample data (zero DB writes — safe for a stage demo). **Live** persists chats,
+- **🔀 Demo mode ↔ Live mode** - a single toggle. **Demo** runs entirely client-side from
+  seeded sample data (zero DB writes - safe for a stage demo). **Live** persists chats,
   messages, complaints and photo uploads to Supabase.
-- **🔐 Authentication** — Clerk-guarded routes via `middleware.ts`; hosted, themed
+- **🔐 Authentication** - Clerk-guarded routes via `middleware.ts`; hosted, themed
   sign-in / sign-up pages with a split brand layout.
-- **🧯 Graceful degradation** — every external dependency has a fallback: Gemini failure →
+- **🧯 Graceful degradation** - every external dependency has a fallback: Gemini failure →
   keyword card matcher; no GPS → vision-based guess; offline → IndexedDB queue; no AI
   backend → in-app Gemini routes.
-- **♿ Accessibility & responsiveness** — semantic roles, `aria-*` on interactive controls,
+- **♿ Accessibility & responsiveness** - semantic roles, `aria-*` on interactive controls,
   keyboard-dismissable menus/modals, and a mobile-first responsive layout throughout.
-- **🔏 Security posture** — secrets are server-only and **never committed** (`.env*`,
+- **🔏 Security posture** - secrets are server-only and **never committed** (`.env*`,
   `.vercel/` git-ignored); Supabase **RLS is enabled**; service keys live exclusively in
   server-side API routes.
-- **✅ Tests** — Vitest unit suites for the trickiest logic: dossier resolution, EXIF
+- **✅ Tests** - Vitest unit suites for the trickiest logic: dossier resolution, EXIF
   location parsing, image validation, and location lookup.
-- **🧩 Clean separation** — pure logic in `lib/`, presentational cards in
+- **🧩 Clean separation** - pure logic in `lib/`, presentational cards in
   `components/chat/cards/`, network behind `/app/api/*`, so each piece is independently
   testable.
 
@@ -242,7 +242,7 @@ app/                          ← repository root (Next.js App Router)
 
 ### Data model (`db/schema.sql`)
 `chats` · `messages` · `contractors` · `contracts` · `officers` ·
-`complaints` · `complaint_photos` · `complaint_events` — with RLS enabled and a public
+`complaints` · `complaint_photos` · `complaint_events` - with RLS enabled and a public
 `roadwatch-photos` storage bucket.
 
 ---
@@ -263,7 +263,7 @@ npm run build        # production build
 ### Environment variables (`.env.local`)
 
 ```bash
-# AI — Google Gemini (server-side)
+# AI - Google Gemini (server-side)
 GEMINI_API_KEY=
 
 # Optional: route /chat + /identify-road to an external FastAPI backend.
@@ -285,7 +285,7 @@ NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
 NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
 ```
 
-> In **demo mode** the Supabase variables are unused — only `GEMINI_API_KEY` is needed
+> In **demo mode** the Supabase variables are unused - only `GEMINI_API_KEY` is needed
 > for live chat replies. Apply `db/schema.sql` in the Supabase SQL editor to enable
 > live mode.
 
@@ -299,7 +299,7 @@ the jury can trust every claim:
 - **Real & wired:** photo → EXIF GPS → OSRM snap → Nominatim address; Gemini chat &
   vision; Supabase persistence (live mode); Clerk auth; offline queue/cache; i18n.
 - **Deterministic demo:** to keep the stage narrative stable and verifiable, any uploaded
-  photo resolves to one canonical contractor dossier (OMR Service Rd, Chennai) — **but the
+  photo resolves to one canonical contractor dossier (OMR Service Rd, Chennai) - **but the
   GPS coordinates shown are the device's real, live coordinates.** Budget / crash / monsoon
   / cost figures on the cards are seeded illustrative data.
 
@@ -318,6 +318,6 @@ This honesty is baked into the repo (`CURRENT_STATE.md` documents exact scope).
 
 <div align="center">
 
-**RoadWatch** — putting the accountability chain in the hands of the citizen next to the pothole.
+**RoadWatch** - putting the accountability chain in the hands of the citizen next to the pothole.
 
 </div>

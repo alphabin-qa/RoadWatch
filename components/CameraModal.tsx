@@ -112,7 +112,7 @@ export default function CameraModal({
 
   return createPortal(
     <div className="fixed inset-0 z-50 bg-black">
-      {/* Live feed — fills the whole viewport, centered, fully visible (no crop) */}
+      {/* Live feed - fills the whole viewport, centered, fully visible (no crop) */}
       {error ? (
         <div className="absolute inset-0 flex items-center justify-center p-6">
           <div className="max-w-xs text-center text-[14px] leading-relaxed text-white/80">
