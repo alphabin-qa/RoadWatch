@@ -24,7 +24,7 @@ export default function AuthShell({
       <div className="flex flex-col px-6 py-8 sm:px-10">
         <div className="flex items-center gap-2 text-ink">
           <Logo className="h-7 w-7" />
-          <span className="text-[20px] font-semibold leading-none tracking-tight">
+          <span className="text-[26px] font-semibold leading-none tracking-tight">
             RoadWatch
           </span>
         </div>
