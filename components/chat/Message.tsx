@@ -133,6 +133,16 @@ export default function Message({
             {renderInlineBold(m.text)}
           </div>
         )}
+        {m.card && (
+          <div className="flex items-center gap-2 rounded-lg border border-warn/40 bg-warn/10 px-3 py-2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" className="shrink-0 text-warn">
+              <path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="text-[12px] font-semibold uppercase tracking-wide text-warn">
+              {t.sampleDataNote[locale]}
+            </span>
+          </div>
+        )}
         {m.card === "attribution" && <AttributionCard locale={locale} stretch={m.stretch} />}
         {m.card === "budget" && <BudgetCard locale={locale} stretch={m.stretch} />}
         {m.card === "officer" && <OfficerCard locale={locale} stretch={m.stretch} />}

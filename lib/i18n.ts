@@ -11,6 +11,31 @@ type Dict = Record<Locale, string>;
 export const t = {
   // header
   appName: { en: "RoadWatch", hi: "रोडवॉच", ta: "ரோட்வாட்ச்" } as Dict,
+  sampleDataNote: {
+    en: "Sample data - for demonstration only",
+    hi: "नमूना डेटा - केवल प्रदर्शन के लिए",
+    ta: "மாதிரித் தரவு - செயல்விளக்கத்திற்கு மட்டும்",
+  } as Dict,
+  needPhoto: {
+    en: "To find who built a road, I need a photo of it. Please attach or capture a picture of the road, and I'll trace the contractor, budget, warranty and the officer responsible.",
+    hi: "यह जानने के लिए कि सड़क किसने बनाई, मुझे उसकी एक तस्वीर चाहिए। कृपया सड़क की फ़ोटो जोड़ें या खींचें।",
+    ta: "சாலையை யார் கட்டினார் என அறிய, அதன் புகைப்படம் தேவை. சாலையின் படத்தை இணைக்கவும் அல்லது எடுக்கவும்.",
+  } as Dict,
+  removeImage: {
+    en: "Remove photo",
+    hi: "फ़ोटो हटाएँ",
+    ta: "புகைப்படத்தை அகற்று",
+  } as Dict,
+  photoReady: {
+    en: "Photo ready - add a note or send",
+    hi: "फ़ोटो तैयार - नोट जोड़ें या भेजें",
+    ta: "புகைப்படம் தயார் - குறிப்பு சேர்க்கவும் அல்லது அனுப்பவும்",
+  } as Dict,
+  addNote: {
+    en: "Add a note (optional)...",
+    hi: "एक नोट जोड़ें (वैकल्पिक)...",
+    ta: "குறிப்பு சேர்க்கவும் (விரும்பினால்)...",
+  } as Dict,
   tagline: {
     en: "Road accountability",
     hi: "सड़क जवाबदेही",

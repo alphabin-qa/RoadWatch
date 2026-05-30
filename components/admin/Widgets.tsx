@@ -30,7 +30,7 @@ export function KPIRow({ locale }: { locale: Locale }) {
         { k: t.openComplaints[locale], v: "148", d: "+12 today" },
         { k: t.slaBreaches[locale], v: "23", d: "9 critical" },
         { k: t.costInaction[locale], v: "₹11.4 L", d: "across 42 stretches" },
-        { k: t.topContractor[locale], v: "Chennai Infra", d: "4 reopened" },
+        { k: t.topContractor[locale], v: "ABC Constructions", d: "4 reopened" },
       ]
     : [
         {
@@ -86,11 +86,11 @@ export function ComplaintsTable({ locale }: { locale: Locale }) {
   }, [demo]);
 
   const sampleRows = [
-    ["OMR Service Rd · 14.2 km", "SH", "Chennai Infra", 12, "₹86,750"],
-    ["ECR · 3.4 km", "SH", "Coromandel", 9, "₹71,200"],
-    ["Anna Salai · 0.8 km", "MDR", "Madras Build", 7, "₹58,900"],
-    ["GST Rd · 22.1 km", "NH", "NHAI-C5", 5, "₹41,300"],
-    ["Poonamallee HW · 9.0 km", "SH", "Chennai Infra", 4, "₹33,800"],
+    ["OMR Service Rd · 14.2 km", "SH", "ABC Constructions", 12, "₹86,750"],
+    ["ECR · 3.4 km", "SH", "XYZ Roadways", 9, "₹71,200"],
+    ["Anna Salai · 0.8 km", "MDR", "PQR Builders", 7, "₹58,900"],
+    ["GST Rd · 22.1 km", "NH", "DEF Concessionaire", 5, "₹41,300"],
+    ["Poonamallee HW · 9.0 km", "SH", "ABC Constructions", 4, "₹33,800"],
   ];
   const rows: any[][] = demo
     ? sampleRows
@@ -157,10 +157,10 @@ export function CostHeatmap({ locale }: { locale: Locale }) {
 
 export function ContractorScorecard() {
   const rows = [
-    ["Chennai Infra Pvt Ltd", 14, 4, "₹22.1 Cr", "68%"],
-    ["Coromandel Constructions", 9, 2, "₹14.6 Cr", "81%"],
-    ["Madras Build Corp", 6, 1, "₹8.2 Cr", "77%"],
-    ["NHAI Concessionaire C5", 3, 1, "₹6.4 Cr", "72%"],
+    ["ABC Constructions Pvt Ltd", 14, 4, "₹22.1 Cr", "68%"],
+    ["XYZ Roadways Pvt Ltd", 9, 2, "₹14.6 Cr", "81%"],
+    ["PQR Builders Pvt Ltd", 6, 1, "₹8.2 Cr", "77%"],
+    ["DEF Concessionaire Ltd", 3, 1, "₹6.4 Cr", "72%"],
   ];
   return (
     <div className="overflow-hidden rounded-xl border border-line">

@@ -12,11 +12,11 @@ describe("dossier - deterministic contractor record", () => {
   it("returns the SAME contractor/price/license/owner for any coordinates", () => {
     const out = fixes.map((f) => dossierFor(f, true));
     for (const d of out) {
-      expect(d.contractor).toBe("Chennai Infra Pvt Ltd");
+      expect(d.contractor).toBe("ABC Constructions Pvt Ltd");
       expect(d.sanctioned).toBe("₹2.30 Cr");
       expect(d.spent).toBe("₹2.10 Cr");
-      expect(d.license?.no).toBe("CIPL/TN-PWD/2019/0473");
-      expect(d.owner?.name).toBe("Mr. S. Rajaratnam");
+      expect(d.license?.no).toBe("ABCL/PWD/2019/0473");
+      expect(d.owner?.name).toBe("Mr. Alan Smithee");
     }
   });
 
@@ -37,7 +37,7 @@ describe("dossier - deterministic contractor record", () => {
     const d = dossierFor(fixes[0], true);
     const owner = answerFromDossier("who owns the contractor company?", d, "en");
     expect(owner.matched).toBe(true);
-    expect(owner.reply).toContain("Mr. S. Rajaratnam");
+    expect(owner.reply).toContain("Mr. Alan Smithee");
 
     const tender = answerFromDossier("what was the tender amount?", d, "en");
     expect(tender.matched).toBe(true);
@@ -45,7 +45,7 @@ describe("dossier - deterministic contractor record", () => {
 
     const lic = answerFromDossier("show the contractor license", d, "en");
     expect(lic.matched).toBe(true);
-    expect(lic.reply).toContain("CIPL/TN-PWD/2019/0473");
+    expect(lic.reply).toContain("ABCL/PWD/2019/0473");
 
     const warranty = answerFromDossier("is it under warranty?", d, "en");
     expect(warranty.matched).toBe(true);

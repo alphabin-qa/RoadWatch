@@ -17,7 +17,7 @@ export const DEMO_DOSSIER: ResolvedStretch = {
   chainage: "14.2 km",
   lastRelay: "14 Feb 2024",
   workDate: "10 Jan 2024 – 14 Feb 2024",
-  contractor: "Chennai Infra Pvt Ltd",
+  contractor: "ABC Constructions Pvt Ltd",
   contractorId: null,
   contractId: null,
   tenderId: "TN-2023-1148",
@@ -30,7 +30,7 @@ export const DEMO_DOSSIER: ResolvedStretch = {
   hasContract: true,
   tenderUrl: "https://eprocure.gov.in/cppp/tenderdetails/TN-2023-1148",
   license: {
-    no: "CIPL/TN-PWD/2019/0473",
+    no: "ABCL/PWD/2019/0473",
     class: "PWD Class-I (Roads & Bridges)",
     issued: "08 Jun 2019",
     renewed: "12 Jan 2024",
@@ -38,12 +38,12 @@ export const DEMO_DOSSIER: ResolvedStretch = {
     valid: true,
   },
   owner: {
-    name: "Mr. S. Rajaratnam",
+    name: "Mr. Alan Smithee",
     role: "Managing Director",
-    group: "Chennai Infra Group",
+    group: "ABC Constructions Group",
   },
   officer: {
-    name: "Er. Ramesh Kumar",
+    name: "Er. Richard Roe",
     designation: "Executive Engineer",
     division: "Highways Division, Chennai South",
     email: "ee.south@tnhighways.gov.in",
@@ -109,8 +109,8 @@ export function reasoningSteps(
   }
   steps.push({ label: "Reverse-geocoding coordinates", detail: "OMR Service Road, Thoraipakkam, Chennai" });
   steps.push({ label: "Matching road & tender records", detail: "Contract TN-2023-1148 found" });
-  steps.push({ label: "Resolving contractor", detail: "Chennai Infra Pvt Ltd" });
-  steps.push({ label: "Verifying contractor license", detail: "CIPL/TN-PWD/2019/0473 · valid till 31 Mar 2027" });
+  steps.push({ label: "Resolving contractor", detail: "ABC Constructions Pvt Ltd" });
+  steps.push({ label: "Verifying contractor license", detail: "ABCL/PWD/2019/0473 · valid till 31 Mar 2027" });
   steps.push({ label: "Checking warranty (DLP)", detail: "Active until 13 Feb 2029" });
   return steps;
 }

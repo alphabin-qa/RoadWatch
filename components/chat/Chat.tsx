@@ -41,6 +41,7 @@ export default function Chat({
   const [locating, setLocating] = useState(false);
   const [gpsModalOpen, setGpsModalOpen] = useState(false);
   const [pendingReport, setPendingReport] = useState<File | null>(null);
+  const [pendingCaption, setPendingCaption] = useState<string | undefined>(undefined);
   const bottom = useRef<HTMLDivElement>(null);
 
   // Track connectivity; flush any queued complaints when we come back online.
@@ -242,8 +243,15 @@ export default function Chat({
     setPrefill((p) => ({ text, nonce: p.nonce + 1 }));
   }
 
-  // ---- Text questions ----
-  async function send(text: string) {
+  // ---- Send: text and/or a staged photo ----
+  async function send(text: string, image?: File) {
+    // A photo was attached in the composer: run the photo report flow, carrying
+    // the typed text (if any) as the caption on the user's message.
+    if (image) {
+      await attach(image, text);
+      return;
+    }
+
     const uid = crypto.randomUUID();
     const aid = crypto.randomUUID();
     const history = messages.map((m) => ({
@@ -274,7 +282,8 @@ export default function Chat({
         const a = answerFromDossier(text, lastStretch, locale);
         finish({ text: a.reply, card: a.card, stretch: lastStretch, suggestions });
       } else {
-        finish({ text: t.askLocation[locale] });
+        // Text alone cannot identify a specific road - ask for a photo.
+        finish({ text: t.needPhoto[locale] });
       }
       setPending(false);
       return;
@@ -288,6 +297,14 @@ export default function Chat({
     if (det && det.matched && lastStretch) {
       finish({ text: det.reply, card: det.card, stretch: lastStretch, suggestions });
       void persistMessage({ role: "assistant", text: det.reply, card_kind: det.card });
+      setPending(false);
+      return;
+    }
+    // No road resolved yet: a text question alone can't identify a specific
+    // road, so ask the user for a photo instead of guessing.
+    if (!lastStretch) {
+      await new Promise((r) => setTimeout(r, 300));
+      finish({ text: t.needPhoto[locale] });
       setPending(false);
       return;
     }
@@ -345,7 +362,8 @@ export default function Chat({
   }
 
   // ---- Photo report → live GPS → reasoning → dossier ----
-  async function attach(file: File) {
+  // `caption` is any text the user typed alongside the photo in the composer.
+  async function attach(file: File, caption?: string) {
     const code = await validateImage(file);
     if (code !== "ok") {
       setMessages((prev) => [
@@ -360,17 +378,19 @@ export default function Chat({
       return;
     }
     setPendingReport(file);
-    await tryGpsAndProcess(file);
+    setPendingCaption(caption);
+    await tryGpsAndProcess(file, caption);
   }
 
-  async function tryGpsAndProcess(file: File) {
+  async function tryGpsAndProcess(file: File, caption?: string) {
     setLocating(true);
     try {
       const fix = await getLivePosition();
       setLocating(false);
       setGpsModalOpen(false);
       setPendingReport(null);
-      await processReport(file, fix, true);
+      setPendingCaption(undefined);
+      await processReport(file, fix, true, caption);
     } catch {
       // GPS off / denied / unavailable → show the popup.
       setLocating(false);
@@ -382,6 +402,7 @@ export default function Chat({
     file: File,
     fix: GeoFix | null,
     gpsOn: boolean,
+    caption?: string,
   ) {
     const url = URL.createObjectURL(file);
     const uid = crypto.randomUUID();
@@ -391,7 +412,7 @@ export default function Chat({
 
     setMessages((prev) => [
       ...prev,
-      { id: uid, role: "user", imageUrl: url, location: loc },
+      { id: uid, role: "user", imageUrl: url, location: loc, text: caption?.trim() || undefined },
       ...(gpsOn
         ? []
         : [
@@ -481,12 +502,14 @@ export default function Chat({
       <GpsModal
         open={gpsModalOpen}
         locale={locale}
-        onRetry={() => pendingReport && tryGpsAndProcess(pendingReport)}
+        onRetry={() => pendingReport && tryGpsAndProcess(pendingReport, pendingCaption)}
         onContinue={() => {
           setGpsModalOpen(false);
           const f = pendingReport;
+          const cap = pendingCaption;
           setPendingReport(null);
-          if (f) void processReport(f, null, false);
+          setPendingCaption(undefined);
+          if (f) void processReport(f, null, false, cap);
         }}
       />
 
@@ -498,7 +521,7 @@ export default function Chat({
               {t.locating[locale]}
             </div>
           )}
-          <Composer locale={locale} onSend={send} onAttach={attach} prefill={prefill} />
+          <Composer locale={locale} onSend={send} prefill={prefill} />
           <p className="mt-2 flex items-center justify-center gap-2 text-center text-[10px] text-muted">
             {!online && (
               <span className="inline-flex items-center gap-1 rounded-full bg-[#b45309]/10 px-2 py-0.5 text-[#b45309]">

@@ -66,11 +66,11 @@ const CITIES = {
   Ahmedabad: {
     state: "Gujarat",
     contractors: [
-      "Sardar Infra Projects Pvt Ltd",
-      "Saurashtra Roads Ltd",
-      "Gujarat Buildcon Pvt Ltd",
-      "Akshar Civil Works",
-      "Narmada Construction Co",
+      "ABC Constructions Pvt Ltd",
+      "XYZ Roadways Ltd",
+      "PQR Builders Pvt Ltd",
+      "GHI Civil Works",
+      "JKL Construction Co",
     ],
     roads: [
       ["SG Highway", "SH", 23.0325, 72.5079],
@@ -103,11 +103,11 @@ const CITIES = {
   Chennai: {
     state: "Tamil Nadu",
     contractors: [
-      "Chennai Infra Pvt Ltd",
-      "Coromandel Constructions",
-      "Madras Build Corp",
-      "Marina Roadways Ltd",
-      "Pallava Civil Works",
+      "ABC Constructions Pvt Ltd",
+      "XYZ Roadways Pvt Ltd",
+      "PQR Builders Pvt Ltd",
+      "LMN Roadways Ltd",
+      "MNO Civil Works",
     ],
     roads: [
       ["OMR Service Road", "SH", 12.9520, 80.2430],
@@ -141,11 +141,11 @@ const CITIES = {
 
 function ladderFor(city, state) {
   const base = [
-    [1, "Junior Engineer", "Er. S. Kavin"],
-    [2, "Assistant Engineer", "Er. P. Lakshmi"],
-    [3, "Executive Engineer", "Er. Ramesh Kumar"],
-    [4, "Superintending Engineer", "Er. A. Natarajan"],
-    [5, "Chief Engineer", "Er. M. Venkatesh"],
+    [1, "Junior Engineer", "Er. John Doe"],
+    [2, "Assistant Engineer", "Er. Jane Smith"],
+    [3, "Executive Engineer", "Er. Richard Roe"],
+    [4, "Superintending Engineer", "Er. Mary Major"],
+    [5, "Chief Engineer", "Er. James Poe"],
   ];
   const slug = city.toLowerCase().replace(/[^a-z]/g, "");
   return base.map(([rank, role, name]) => ({
