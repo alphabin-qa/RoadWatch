@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "leaflet/dist/leaflet.css";
+
+/* Leaflet's default attribution control is dense. Soften it to match our type. */
+.leaflet-container { font: 11px/1.4 ui-sans-serif, -apple-system, sans-serif; }
+.leaflet-control-attribution { background: rgba(255,255,255,0.8); }
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  background: #faf9f6;
+  color: #0a0a0a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+  overscroll-behavior: none;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+::selection {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+*:focus-visible {
+  outline: 2px solid #0a0a0a;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Thin scrollbar to match minimal aesthetic */
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-thumb { background: #e8e4dc; border-radius: 3px; }

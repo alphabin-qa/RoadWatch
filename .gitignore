@@ -1,0 +1,14 @@
+node_modules
+.next
+.DS_Store
+*.log
+*.tsbuildinfo
+.env*
+!.env.example
+.vercel
+
+# image source originals (optimized copies live in public/)
+images/
+
+# next.js generated
+next-env.d.ts
