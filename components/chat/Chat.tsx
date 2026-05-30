@@ -243,6 +243,47 @@ export default function Chat({
     setPrefill((p) => ({ text, nonce: p.nonce + 1 }));
   }
 
+  // ---- Predefined follow-up chips ----
+  // Selecting a suggestion always resolves against the current dossier. Give it
+  // a short, randomised "thinking" pause (2-3s) so the deterministic answer
+  // reads as though the AI worked it out, then reveal the reply.
+  async function answerSuggestion(text: string) {
+    if (!lastStretch) {
+      void send(text);
+      return;
+    }
+
+    const uid = crypto.randomUUID();
+    const aid = crypto.randomUUID();
+    setMessages((prev) => [
+      ...prev,
+      { id: uid, role: "user", text },
+      { id: aid, role: "assistant", text: "" },
+    ]);
+    setPending(true);
+    void persistMessage({ role: "user", text });
+
+    const a = answerFromDossier(text, lastStretch, locale);
+    const delay = 2000 + Math.floor(Math.random() * 1000); // 2-3s random spinner
+    await new Promise((r) => setTimeout(r, delay));
+
+    setMessages((prev) =>
+      prev.map((m) =>
+        m.id === aid
+          ? {
+              ...m,
+              text: a.reply,
+              card: a.card,
+              stretch: lastStretch,
+              suggestions: SUGGESTIONS[locale],
+            }
+          : m,
+      ),
+    );
+    void persistMessage({ role: "assistant", text: a.reply, card_kind: a.card });
+    setPending(false);
+  }
+
   // ---- Send: text and/or a staged photo ----
   async function send(text: string, image?: File) {
     // A photo was attached in the composer: run the photo report flow, carrying
@@ -490,7 +531,7 @@ export default function Chat({
                   m={m}
                   locale={locale}
                   onFileComplaint={fileComplaint}
-                  onSuggestion={send}
+                  onSuggestion={answerSuggestion}
                 />
               ))}
               <div ref={bottom} />

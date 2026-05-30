@@ -6,6 +6,7 @@ import { formatLatLng, type LatLng } from "@/lib/exifLocation";
 import type { ComplaintDraft } from "./cards/ComplaintCard";
 import ReasoningTrace from "./ReasoningTrace";
 import Suggestions from "./Suggestions";
+import ThinkingIndicator from "./ThinkingIndicator";
 
 function renderInlineBold(text: string) {
   // Split on **...** and wrap matched runs in <strong>.
@@ -115,13 +116,7 @@ export default function Message({
         {m.reasoning && m.reasoning.length > 0 && (
           <ReasoningTrace steps={m.reasoning} />
         )}
-        {isTyping && (
-          <div className="inline-flex items-center gap-1 py-2">
-            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted [animation-delay:-0.3s]" />
-            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted [animation-delay:-0.15s]" />
-            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted" />
-          </div>
-        )}
+        {isTyping && <ThinkingIndicator locale={locale} />}
         {m.text && (
           <div
             className={
