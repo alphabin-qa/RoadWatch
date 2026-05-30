@@ -341,7 +341,7 @@ export default function Sidebar({
 
         {/* Account footer */}
         <div className="space-y-2.5 border-t border-line p-2.5">
-          {/* Admin — highlighted, sits directly above the account row */}
+          {/* Admin - highlighted, sits directly above the account row */}
           <Link
             href="/admin"
             onClick={onClose}

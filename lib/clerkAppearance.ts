@@ -4,7 +4,7 @@ import type { Appearance } from "@clerk/types";
  * Shared appearance for Clerk <SignIn /> and <SignUp />.
  *
  * The auth card lives inside a fixed `max-w-[400px]` column (see AuthShell),
- * so every interactive element must be `w-full` + `box-border` — otherwise
+ * so every interactive element must be `w-full` + `box-border` - otherwise
  * Clerk's default intrinsic widths overflow the column and the right edge of
  * the email input / buttons gets clipped.
  */
@@ -20,7 +20,7 @@ export const clerkAppearance: Appearance = {
     fontFamily: "inherit",
   },
   elements: {
-    // Layout — keep the card transparent and edge-to-edge inside our column.
+    // Layout - keep the card transparent and edge-to-edge inside our column.
     rootBox: "w-full",
     cardBox: "w-full max-w-full shadow-none",
     card: "w-full max-w-full shadow-none border-none bg-transparent p-0 gap-5",
